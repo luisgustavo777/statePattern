@@ -138,9 +138,3 @@ classDiagram
     PedidoState <|.. Devolvido
     PedidoState ..> TransicaoInvalidaException : lança (implementação padrão)
 ```
-
-> A interface `PedidoState` tem **métodos `default`** que lançam `TransicaoInvalidaException`.
-> Cada estado concreto sobrescreve somente as operações que ele permite; os estados finais
-> (`Cancelado` e `Devolvido`) não sobrescrevem nenhuma. As transições (`new PagamentoAprovado()`,
-> `new Cancelado()`, etc.) estão representadas no diagrama de estados.
-
