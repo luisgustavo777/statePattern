@@ -1,20 +1,3 @@
-# State Pattern — Pedido de E-commerce
-
-Implementação em **Java 21** (Maven) do padrão de projeto **State** (GoF, comportamental),
-aplicada ao ciclo de vida de um **pedido de e-commerce**: carrinho, pagamento, separação no
-estoque, envio com código de rastreio, entrega, cancelamento e devolução.
-
-## Por que o State Pattern?
-
-Sem o padrão, a classe `Pedido` teria `if/switch` em todos os métodos para saber se uma ação é
-válida (`if (status == PAGO) ...`). Com o State:
-
-- cada estado vira uma **classe própria**, que sabe quais operações e transições permite;
-- o `Pedido` (contexto) **apenas delega** a ação ao estado atual, sem condicionais;
-- as regras de negócio ficam junto do estado a que pertencem (ex.: só se altera o carrinho em
-  `AguardandoPagamento`; só se cancela até `EmSeparacao`; só se devolve após `Entregue`);
-- adicionar um novo estado não exige alterar os existentes (princípio aberto/fechado).
-
 ## Diagrama de estados
 
 ```mermaid
