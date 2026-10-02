@@ -28,26 +28,6 @@ stateDiagram-v2
     Cancelado --> [*]
 ```
 
-### Tabela de operações por estado
-
-| Estado atual          | adicionarItem | pagar | separar | enviar | entregar | cancelar  | devolver |
-|-----------------------|:-------------:|:-----:|:-------:|:------:|:--------:|:---------:|:--------:|
-| Aguardando pagamento  | ✓ (mesmo estado) | Pagamento aprovado | ✗ | ✗ | ✗ | Cancelado | ✗ |
-| Pagamento aprovado    | ✗ | ✗ | Em separação | ✗ | ✗ | Cancelado | ✗ |
-| Em separação          | ✗ | ✗ | ✗ | Enviado | ✗ | Cancelado | ✗ |
-| Enviado               | ✗ | ✗ | ✗ | ✗ | Entregue | ✗ | ✗ |
-| Entregue              | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | Devolvido |
-| Cancelado *(final)*   | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| Devolvido *(final)*   | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-
-`✗` = operação inválida → lança `TransicaoInvalidaException`.
-
-Regras extras de negócio:
-
-- `pagar()` exige ao menos um item no pedido (`IllegalStateException` caso contrário).
-- `enviar()` exige um código de rastreio não vazio (`IllegalArgumentException` caso contrário).
-- Cancelar após o pagamento representa estorno; cancelar em `EmSeparacao` também devolve os itens ao estoque.
-
 ## Diagrama de classes
 
 ```mermaid
